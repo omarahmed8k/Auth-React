@@ -1,6 +1,6 @@
 import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import AddList from '../pages/addList/addList'
+import AddList from '../pages/AddList/AddList'
 import EditList from '../pages/EditList/EditList'
 import Lists from '../pages/Lists/Lists'
 import Profile from '../pages/Profile/Profile.jsx'
