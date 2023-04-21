@@ -1,5 +1,5 @@
 const endPoint = {
-    endPoint: "https://blog-api-l9xf.onrender.com",
+    endPoint: "https://auth-express-ynru.onrender.com",
 };
 
 export default endPoint;
