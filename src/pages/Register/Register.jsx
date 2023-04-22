@@ -25,6 +25,10 @@ export default function Register() {
   }
 
   async function register() {
+    if ((registerData.name && registerData.email && registerData.password) === '') {
+      sweetAlerts.error('Please fill all the fields');
+      return;
+    }
     try {
       setLoading(true);
       const { data } = await authServices.register(registerData);

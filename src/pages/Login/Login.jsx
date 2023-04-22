@@ -42,6 +42,10 @@ export default function Login() {
     ]
 
     async function login() {
+        if ((loginData.email && loginData.password) === '') {
+            sweetAlerts.error('Please fill all the fields');
+            return;
+        }
         setLoading(true);
         try {
             const { data } = await authServices.login(loginData);
