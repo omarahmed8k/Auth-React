@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { authActions } from '../../store/auth-slice'
 import authServices from '../../services/authServices';
 import Loader from '../../components/Loader/Loader';
+import sweetAlerts from '../../helpers/sweetAlerts';
 import "./Login.scss"
 
 export default function Login() {
@@ -20,15 +22,37 @@ export default function Login() {
         console.log(loginData)
     }
 
+    const loginInputs = [
+        {
+            label: 'Email',
+            type: 'email',
+            name: 'email',
+            value: loginData.email,
+            required: true,
+            onChange: handleChange
+        },
+        {
+            label: 'Password',
+            type: 'password',
+            name: 'password',
+            value: loginData.password,
+            required: true,
+            onChange: handleChange
+        }
+    ]
+
     async function login() {
         setLoading(true);
         try {
-            const data = await authServices.login(loginData);
+            const { data } = await authServices.login(loginData);
+            setLoading(false);
             console.log(data)
-            setLoading(false);
+            sweetAlerts.success('Login Success');
+            dispatch(authActions.login(data))
+            navigate('/');
         } catch (error) {
-            console.log(error)
             setLoading(false);
+            sweetAlerts.error(error.response.data.msg);
         }
         setLoading(false);
     }
@@ -40,14 +64,12 @@ export default function Login() {
                 <div className='login-page'>
                     <h1 className="title">Login</h1>
                     <form className='col-1-columns'>
-                        <div className='input-container'>
-                            <label htmlFor="email">Email</label>
-                            <input type="email" name="email" onChange={handleChange} />
-                        </div>
-                        <div className='input-container'>
-                            <label htmlFor="password">Password</label>
-                            <input type="password" name="password" onChange={handleChange} />
-                        </div>
+                        {loginInputs.map((input, index) => (
+                            <div className='input-container' key={index}>
+                                <label htmlFor={input.name}>{input.label}</label>
+                                <input id={input.name} type={input.type} name={input.name} value={input.value} onChange={input.onChange} required={input.required} />
+                            </div>
+                        ))}
                         <button className='main-btn' type="button" onClick={(e) => { e.preventDefault; login(); }}>Login</button >
                         <Link to='/register' className="second-btn">Sign Up</Link>
                     </form>

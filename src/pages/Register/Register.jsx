@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { authActions } from '../../store/auth-slice';
 import Loader from '../../components/Loader/Loader';
 import authServices from '../../services/authServices';
+import sweetAlerts from '../../helpers/sweetAlerts';
 
 export default function Register() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [registerData, setRegisterData] = useState({
@@ -23,12 +27,14 @@ export default function Register() {
   async function register() {
     try {
       setLoading(true);
-      const data = await authServices.register(registerData);
-      console.log(data)
+      const { data } = await authServices.register(registerData);
       setLoading(false);
+      sweetAlerts.success('Register Success');
+      dispatch(authActions.login(data))
+      navigate('/');
     } catch (error) {
-      console.log(error)
       setLoading(false);
+      sweetAlerts.error(error.response.data.msg);
     }
   }
 
