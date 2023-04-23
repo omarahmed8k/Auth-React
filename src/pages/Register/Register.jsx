@@ -18,11 +18,36 @@ export default function Register() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setRegisterData((prev) => ({
-      ...prev,
-      [name]: value
-    }))
+    setRegisterData((prev) => ({ ...prev, [name]: value }))
+    console.log(registerData)
   }
+
+  const registerInputs = [
+    {
+      label: 'Name',
+      type: 'text',
+      name: 'name',
+      value: registerData.name,
+      required: true,
+      onChange: handleChange
+    },
+    {
+      label: 'Email',
+      type: 'email',
+      name: 'email',
+      value: registerData.email,
+      required: true,
+      onChange: handleChange
+    },
+    {
+      label: 'Password',
+      type: 'password',
+      name: 'password',
+      value: registerData.password,
+      required: true,
+      onChange: handleChange
+    }
+  ]
 
   async function register() {
     if ((registerData.name && registerData.email && registerData.password) === '') {
@@ -54,18 +79,12 @@ export default function Register() {
         <div className='login-page'>
           <h1 className="title">Sign Up</h1>
           <form className='col-1-columns'>
-            <div className='input-container'>
-              <label htmlFor="name">Name</label>
-              <input type="text" name="name" onChange={handleChange} />
-            </div>
-            <div className='input-container'>
-              <label htmlFor="email">Email</label>
-              <input type="email" name="email" onChange={handleChange} />
-            </div>
-            <div className='input-container'>
-              <label htmlFor="password">Password</label>
-              <input type="password" name="password" onChange={handleChange} />
-            </div>
+            {registerInputs.map((input, index) => (
+              <div className='input-container' key={index}>
+                <label htmlFor={input.name}>{input.label}</label>
+                <input id={input.name} type={input.type} name={input.name} value={input.value} onChange={input.onChange} required={input.required} />
+              </div>
+            ))}
             <button className='main-btn' type="submit" onClick={(e) => { e.preventDefault(); register() }}>Sign Up</button >
             <Link to='/login' className="second-btn">Login</Link>
           </form>
