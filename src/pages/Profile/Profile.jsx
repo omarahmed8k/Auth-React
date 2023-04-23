@@ -7,7 +7,6 @@ import userServices from '../../services/userServices';
 import userSvg from '../../assets/svgs/profile.svg';
 import './Profile.scss'
 
-
 export default function Profile() {
     const userId = useSelector(state => state.auth.userId);
     const [loading, setLoading] = useState(false);
@@ -35,8 +34,9 @@ export default function Profile() {
             {loading && <Loader />}
             <div className='profile-page'>
                 <img src={userSvg} alt="userd" />
-                <h1 className='title'>{user.name}</h1>
-                <p className='subtitle'>{user.email}</p>
+                <h1 className='title'>{user?.name || ""}</h1>
+                <p>{user?.email || ""}</p>
+                <p>Tasks Todo: {user?.lists || 0}</p>
             </div>
         </>
     )

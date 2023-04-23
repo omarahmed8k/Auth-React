@@ -5,7 +5,7 @@
     width: 80px;
     height: 100vh;
     transform: translateX(-100%);
-    background-color: #53c4c040;
+    background-color: #254c50;
     box-shadow: 0 0 10px #0000001a;
     z-index: 100;
     padding: 40px 0;
@@ -44,13 +44,13 @@
 }
 
 .toggle-btn {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 0;
     width: 30px;
     height: 45px;
     transform: translate(0, -50%);
-    background-color: #53c4c040;
+    background-color: #254c50;
     color: #fff;
     border-radius: 0 10px 10px 0;
     z-index: 100;
