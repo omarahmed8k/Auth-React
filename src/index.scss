@@ -13,8 +13,8 @@
 
 /* Main Values */
 :root {
-  --main-font-bold: "Blinker-Bold", sans-serif;
-  --main-font-regular: "Blinker-Regular", sans-serif;
+  --font-bold: "Blinker-Bold", sans-serif;
+  --font-regular: "Blinker-Regular", sans-serif;
   --main-color: #15242b;
   --second-color: #53c4c0;
   --main-text-color: #9b9b9b;
@@ -36,7 +36,7 @@ html {
 
 body {
   background: var(--main-color);
-  font-family: var(--main-font-regular);
+  font-family: var(--font-regular);
   color: var(--main-text-color);
   font-size: 16px;
   line-height: 1.5;
@@ -62,7 +62,7 @@ label,
 table,
 ul,
 li {
-  font-family: var(--main-font-regular);
+  font-family: var(--font-regular);
   color: var(--main-text-color);
 }
 
@@ -108,17 +108,8 @@ a {
   padding: 20px 15px;
 }
 
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
 .title {
-  font-family: var(--main-font-bold);
+  font-family: var(--font-bold);
   font-size: 40px;
   color: var(--second-color);
   text-align: center;

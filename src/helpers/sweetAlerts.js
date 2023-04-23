@@ -26,7 +26,7 @@ const sweetAlerts = {
             icon: 'error',
             title: text
         })
-    }
+    },
 }
 
 export default sweetAlerts;

@@ -109,3 +109,10 @@
         transform: scale(1);
     }
 }
+
+@media (max-width: 992px) {
+    .fixed-add {
+        bottom: 20px;
+        right: 20px;
+    }
+}

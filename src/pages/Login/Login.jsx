@@ -74,7 +74,7 @@ export default function Login() {
                                 <input id={input.name} type={input.type} name={input.name} value={input.value} onChange={input.onChange} required={input.required} />
                             </div>
                         ))}
-                        <button className='main-btn' type="button" onClick={(e) => { e.preventDefault; login(); }}>Login</button >
+                        <button className='main-btn' type="button" onClick={(e) => { e.preventDefault(); login(); }}>Login</button>
                         <Link to='/register' className="second-btn">Sign Up</Link>
                     </form>
                 </div>

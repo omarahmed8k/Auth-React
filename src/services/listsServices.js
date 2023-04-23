@@ -1,23 +1,28 @@
 import Axios from "./Axios";
 
 let ListsServices = {
-    allList: async function () {
-        const response = await Axios.get(`v1/lists`);
+    allList: async function (userId) {
+        const response = await Axios.get(`lists?user=${userId}`);
+        return response;
+    },
+
+    getList: async function (listId) {
+        const response = await Axios.get(`lists/${listId}`);
         return response;
     },
 
     createList: async function (obj) {
-        const response = await Axios.post(`v1/lists`, obj);
+        const response = await Axios.post(`lists`, obj);
         return response;
     },
 
     editList: async function (listId, obj) {
-        const response = await Axios.put(`v1/lists/${listId}`, obj);
+        const response = await Axios.patch(`lists/${listId}`, obj);
         return response;
     },
 
     deleteList: async function (listId) {
-        const response = await Axios.delete(`v1/lists/${listId}`);
+        const response = await Axios.delete(`lists/${listId}`);
         return response;
     },
 };
