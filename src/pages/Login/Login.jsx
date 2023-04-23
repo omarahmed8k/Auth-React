@@ -42,14 +42,19 @@ export default function Login() {
     ]
 
     async function login() {
+        console.log(loginData.email)
         if ((loginData.email && loginData.password) === '') {
             sweetAlerts.error('Please fill all the fields');
             return;
-        } else if (loginData.password.length < 6) {
+        } else if (!loginData.email.includes('@')) {
+            sweetAlerts.error('Email must be valid');
+            return;
+        }
+        else if (loginData.password.length < 6) {
             sweetAlerts.error('Password must be at least 6 characters');
             return;
         }
-        
+
         setLoading(true);
         try {
             const { data } = await authServices.login(loginData);

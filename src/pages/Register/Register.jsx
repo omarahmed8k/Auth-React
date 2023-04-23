@@ -53,6 +53,9 @@ export default function Register() {
     if ((registerData.name && registerData.email && registerData.password) === '') {
       sweetAlerts.error('Please fill all the fields');
       return;
+    } else if (!registerData.email.includes('@')) {
+      sweetAlerts.error('Email must be valid');
+      return;
     } else if (registerData.password.length < 6) {
       sweetAlerts.error('Password must be at least 6 characters');
       return;
