@@ -28,7 +28,12 @@ export default function Register() {
     if ((registerData.name && registerData.email && registerData.password) === '') {
       sweetAlerts.error('Please fill all the fields');
       return;
+    } else if (registerData.password.length < 6) {
+      sweetAlerts.error('Password must be at least 6 characters');
+      return;
     }
+
+
     try {
       setLoading(true);
       const { data } = await authServices.register(registerData);
